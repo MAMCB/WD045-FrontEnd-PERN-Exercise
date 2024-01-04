@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const OrdersPage = () => {
   const [orders,setOrders]=useState([]);
@@ -14,15 +15,17 @@ const OrdersPage = () => {
     <div>
       <h1>Orders page</h1>
       <ul>
-    {
-      orders.length>0 && orders.map((order)=>(
-        <li key={order.id}>Price: {order.price} Date: {order.date}</li>
-      ))
-    }
+        {orders.length > 0 &&
+          orders.map((order) => (
+            <li key={order.id}>
+              <Link to={`orders/${order.id}`}>
+                Price: {order.price} Date: {order.date}
+              </Link>
+            </li>
+          ))}
       </ul>
-      
     </div>
-  )
+  );
 }
 
 export default OrdersPage
